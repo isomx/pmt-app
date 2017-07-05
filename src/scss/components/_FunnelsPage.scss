@@ -1,0 +1,53 @@
+@import '../globals';
+/*
+.md-tooltip--enter,.md-tooltip--leave-active  {
+  opacity:0
+}
+.md-tooltip--enter-active{
+  opacity:.9;
+  transition-timing-function:cubic-bezier(0,0,.2,1)
+}
+.md-tooltip--leave-active{
+  transition-timing-function:cubic-bezier(.4,0,1,1)
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+*/
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+.example-appear {
+  /* opacity: 0.01; */
+  transform: translate(500px, 200px);
+}
+
+.example-appear.example-appear-active {
+  /*
+  opacity: 1;
+  transition: opacity .5s ease-in;
+  */
+  transform: translate(0px, 0px);
+  transition: transform 0.5s ease-in-out;
+}
+.example, .example-appear.example-appear-active {
+  /*
+  transition-timing-function: cubic-bezier(.4, 0, 1, 1);
+  transition-timing-function: cubic-bezier(0, 0, .2, 1);
+  @extend %md-transition--decceleration;
+  @extend %md-transition--acceleration;
+  */
+  transition-timing-function: cubic-bezier(0, 0, .2, 1);
+}

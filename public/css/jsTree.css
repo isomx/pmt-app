@@ -1,0 +1,687 @@
+@charset "utf-8";
+/* CSS Document */
+
+* { margin:0; padding:0; }
+body { background:#eee; }
+.overflow { height: 100%; position:relative; width: 100%; /*max-width: 1600px;*/}
+.mJsTree ul { display:block; font-size:14px; color:#000;}
+.mJsTree ul li { display:inline-block; text-align:center; margin:40px; vertical-align:top; }
+.mJsTree ul li.tnone { display:none; }
+.mJsTree ul ul.tshow { display:block!important; }
+.mJsTree ul li > div { display:inline-block; padding:7px 10px; text-decoration:none; position:relative; width:200px; min-height: 30px; z-index:2; background:#27a9e3; color:#fff; text-align:center; box-shadow: 0 0.4em 1.5em 0.2em rgba(0, 0, 0, 0.5)}
+.mJsTree ul li > div span { display: inline-block; margin: 0 0px; line-height:20px;  }
+.mJsTree ul li > div.zindex { z-index:inherit; }
+/*****
+** NOTE: If you change the width of the form, you must also update the 
+** width for .form_typeContent and .form_groupContent 
+******/
+.mJsTree ul li form { display:block; text-align:left; padding:25px; margin-top:15px; position:absolute; z-index:4; background:#375f6f; color:#fff; width: 500px; border-radius: 15px; margin-left: -167px; border: #da9628 5px solid; }
+
+
+.mJsTree ul li form input[type=checkbox] {}
+.mJsTree ul li form input[type=radio] {margin-top:8px;}
+.mJsTree ul li form img.close { float:right; cursor:pointer; background-color:#e02222; padding:2px; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+.mJsTree ul li input[type=text] { min-width:225px; background:#ffc; padding:10px; font-size:14px; color:#000; border:none; margin:0px; display:block; }
+.mJsTree ul li input[type=password] { min-width:225px; background:#ffc; padding:4px; font-size:14px; color:#000; border:none; margin:0px; display:block; }
+.mJsTree ul li select { min-width:225px; background:#ffc; padding:4px; font-size:14px; color:#000; border:none; margin:0px; display:block; }
+.mJsTree ul li textarea { min-height:60px; min-width:225px; background:#ffc; padding:10px; font-size:14px; color:#000; border:none; margin:0px; display:block; }
+.mJsTree ul li textarea.error { background:#d84a38; }
+.mJsTree ul li textarea:focus { background:#ffc; }
+.mJsTree ul li .submit, .mJsTree ul li .edit { border:none; text-align:center; display:block; font-size:18px; font-weight:bold; color:#fff; padding:10px 25px; cursor:pointer; margin-top:3px; background:#da9628; border-radius: 25px; width:100%; }
+.mJsTree ul li .submit:hover, .mJsTree ul li .edit:hover { background:#fff; color: #6dad47; }
+/*
+.mJsTree ul li div.current { background:#28b779; }
+.mJsTree ul li div.children { background:#ffb848; }
+.mJsTree ul li div.parent { background:#852b99; }
+*/
+.mJsTree ul li span.vertical, .mJsTree ul li span.horizontal { display:inline-block; position:absolute; z-index:1; background:#bbb; box-shadow: 0 0.4em 1.2em 0.2em rgba(0, 0, 0, 0.2)}
+
+.mJsTree ul li span.vertical { width:6px;}
+.mJsTree ul li span.horizontal { height:6px;}
+
+
+.mJsTree ul li .horizontalDiv, .mJsTree ul li .verticalDiv { display:inline-block; position:absolute; z-index:1; background:#bbb; box-shadow: 0 0.4em 1.2em 0.2em rgba(0, 0, 0, 0.2)}
+
+.mJsTree ul li .verticalDiv { width:6px;}
+.mJsTree ul li .horizontalDiv { height:6px;}
+
+
+.mJsTree ul li span.horizontalTargetRight, .mJsTree ul li span.horizontalTargetRight2, .mJsTree ul li span.horizontalTargetLeft, .mJsTree ul li span.horizontalTargetLeft2, .mJsTree ul li span.horizontalReturnRight, .mJsTree ul li span.horizontalReturnRight2, .mJsTree ul li span.horizontalReturnLeft, .mJsTree ul li span.horizontalReturnLeft2, .mJsTree ul li span.angleTargetUpRight, .mJsTree ul li span.angleTargetDownRight, .mJsTree ul li span.angleReturnUpRight, .mJsTree ul li span.angleReturnDownRight, .mJsTree ul li span.angleTargetUpLeft, .mJsTree ul li span.angleTargetDownLeft, .mJsTree ul li span.angleReturnUpLeft, .mJsTree ul li span.angleReturnDownLeft {
+    display:inline-block; 
+    position:absolute; 
+    z-index:1; 
+    box-shadow: 0 0.4em 1.2em 0.2em rgba(0, 0, 0, 0.2);
+}
+.mJsTree ul li span.horizontalTargetRight, .mJsTree ul li span.horizontalTargetRight2, .mJsTree ul li span.horizontalTargetLeft, .mJsTree ul li span.horizontalTargetLeft2, .mJsTree ul li span.angleTargetUpRight, .mJsTree ul li span.angleTargetDownRight, .mJsTree ul li span.angleTargetUpLeft, .mJsTree ul li span.angleTargetDownLeft {
+    background: #843c0c;
+    
+}
+
+.mJsTree ul li span.horizontalReturnRight, .mJsTree ul li span.horizontalReturnRight2, .mJsTree ul li span.horizontalReturnLeft, .mJsTree ul li span.horizontalReturnLeft2, .mJsTree ul li span.angleReturnUpRight, .mJsTree ul li span.angleReturnDownRight, .mJsTree ul li span.angleReturnUpLeft, .mJsTree ul li span.angleReturnDownLeft {
+    /*background: #00a09a;*/
+}
+
+
+
+
+.mJsTree ul li span.horizontalTargetRight, .mJsTree ul li span.horizontalTargetRight2, .mJsTree ul li span.horizontalTargetLeft, .mJsTree ul li span.horizontalTargetLeft2, .mJsTree ul li span.horizontalReturnRight, .mJsTree ul li span.horizontalReturnRight2, .mJsTree ul li span.horizontalReturnLeft, .mJsTree ul li span.horizontalReturnLeft2, .mJsTree ul li span.angleTargetUpRight, .mJsTree ul li span.angleReturnUpRight, .mJsTree ul li span.angleTargetDownRight, .mJsTree ul li span.angleReturnDownRight, .mJsTree ul li span.angleTargetUpLeft, .mJsTree ul li span.angleReturnUpLeft, .mJsTree ul li span.angleTargetDownLeft, .mJsTree ul li span.angleReturnDownLeft {
+    height: 9px;
+}
+
+.mJsTree ul li span.angleTargetUpRight, .mJsTree ul li span.angleTargetDownRight, .mJsTree ul li span.angleReturnUpRight, .mJsTree ul li span.angleReturnDownRight, .mJsTree ul li span.angleTargetUpLeft, .mJsTree ul li span.angleTargetDownLeft, .mJsTree ul li span.angleReturnUpLeft, .mJsTree ul li span.angleReturnDownLeft {
+    border-radius: 5px;
+}
+.mJsTree ul li span.horizontalTargetRight, .mJsTree ul li span.horizontalTargetLeft2, .mJsTree ul li span.horizontalReturnRight, .mJsTree ul li span.horizontalReturnLeft2 {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    z-index:0;
+}
+.mJsTree ul li span.horizontalTargetRight2, .mJsTree ul li span.horizontalTargetLeft, .mJsTree ul li span.horizontalReturnRight2, .mJsTree ul li span.horizontalReturnLeft  {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    z-index:0;
+}
+
+.mJsTree ul li span.angleTargetUpRight, .mJsTree ul li span.angleTargetDownRight, .mJsTree ul li span.horizontalTargetRight, .mJsTree ul li span.horizontalTargetRight2, .mJsTree ul li span.angleReturnUpLeft, .mJsTree ul li span.angleReturnDownLeft, .mJsTree ul li span.horizontalReturnLeft, .mJsTree ul li span.horizontalReturnLeft2 {
+    background-image:url(../img/jstree/arrow_white_right.png);
+    background-repeat: repeat-x;
+    background-position: left center;
+}
+.mJsTree ul li span.angleTargetUpLeft, .mJsTree ul li span.angleTargetDownLeft, .mJsTree ul li span.horizontalTargetLeft, .mJsTree ul li span.horizontalTargetLeft2, .mJsTree ul li span.angleReturnUpRight, .mJsTree ul li span.angleReturnDownRight, .mJsTree ul li span.horizontalReturnRight, .mJsTree ul li span.horizontalReturnRight2 {
+    background-image:url(../img/jstree/arrow_white_left.png);
+    background-repeat: repeat-x;
+    background-position: right center;
+    
+}
+    
+
+.mJsTree ul li b.thide { position:absolute; width:11px; height:12px; bottom:0; left:-17px; background:url(../img/jstree/hide.png) no-repeat; cursor:pointer; }
+.mJsTree ul li b.thide.tshow { background:url(../img/jstree/show.png) no-repeat; }
+.mJsTree ul li b.thide.tnone { display:none; }
+.mJsTree ul li span.add_action, .mJsTree ul li span.edit_action, .mJsTree ul li span.highlight, .mJsTree ul li span.delete_action { position:absolute; width:10px; height:10px; cursor:pointer; display:none; padding:2px; background-color:#e02222; background-position:center; background-repeat:no-repeat; border-radius:10px; -moz-border-radius:10px; -webkit-border-radius:10px; }
+.mJsTree ul li span.add_action { top:-5px; left:-5px; background-image:url(../img/jstree/add.png); }
+.mJsTree ul li span.edit_action { bottom:-5px; left:-5px; background-image:url(../img/jstree/edit.png); }
+.mJsTree ul li span.highlight { bottom:-5px; right:-5px; background-image:url(../img/jstree/highlight.png); }
+.mJsTree ul li span.delete_action { top:-5px; right:-5px; background-image:url(../img/jstree/close.png); }
+img.back_btn { position:relative; left:15px; top:15px; cursor:pointer; z-index:3; }
+img.load { position:absolute; }
+div.drag_error, div.delete_msg, div.edit_msg, div.add_msg, div.drop_msg { position:absolute; color:#fff; position:absolute; right:10px; top:10px; padding:4px 10px; font-size:14px; z-index:999; }
+div.drag_error { background:#b41616; }
+div.delete_msg { background:#b41616; }
+div.edit_msg { background:#6dad47; }
+div.add_msg { background:#27A9E3; }
+div.drop_msg { background:#852b99; }
+
+.mJsTreeActiveElement {
+    background: #da9628 !important;
+}
+
+.mPublishChanges i {
+    margin-right: 8px;
+}
+.mPublishChanges {
+    margin-bottom: 15px;
+}
+/** Element type classes - call first (lowest priority over selected and blink **/
+
+.mJsTree ul li > div.group, .mJsTree ul li span.vertical.group, .mJsTree ul li span.horizontal.group, .mJsTree ul li span.horizontalReturnRight.group, .mJsTree ul li span.horizontalReturnRight2.group, .mJsTree ul li span.horizontalReturnLeft.group, .mJsTree ul li span.horizontalReturnLeft2.group, .mJsTree ul li span.angleReturnUpRight.group, .mJsTree ul li span.angleReturnDownRight.group, .mJsTree ul li span.angleReturnUpLeft.group, .mJsTree ul li span.angleReturnDownLeft.group {background-color: #375f6f;}
+
+.mJsTree ul li > div.getUserInput, .mJsTree ul li span.vertical.getUserInput, .mJsTree ul li span.horizontal.getUserInput, .mJsTree ul li span.horizontalReturnRight.getUserInput, .mJsTree ul li span.horizontalReturnRight2.getUserInput, .mJsTree ul li span.horizontalReturnLeft.getUserInput, .mJsTree ul li span.horizontalReturnLeft2.getUserInput, .mJsTree ul li span.angleReturnUpRight.getUserInput, .mJsTree ul li span.angleReturnDownRight.getUserInput, .mJsTree ul li span.angleReturnUpLeft.getUserInput, .mJsTree ul li span.angleReturnDownLeft.getUserInput {background-color: #27a9e3}
+
+.mJsTree ul li > div.displayedToUser, .mJsTree ul li span.vertical.displayedToUser, .mJsTree ul li span.horizontal.displayedToUser, .mJsTree ul li span.horizontalReturnRight.displayedToUser, .mJsTree ul li span.horizontalReturnRight2.displayedToUser, .mJsTree ul li span.horizontalReturnLeft.displayedToUser, .mJsTree ul li span.horizontalReturnLeft2.displayedToUser, .mJsTree ul li span.angleReturnUpRight.displayedToUser, .mJsTree ul li span.angleReturnDownRight.displayedToUser, .mJsTree ul li span.angleReturnUpLeft.displayedToUser, .mJsTree ul li span.angleReturnDownLeft.displayedToUser {background-color: #852b99;}
+.mJsTree ul li > div.transferGroup, .mJsTree ul li span.vertical.transferGroup, .mJsTree ul li span.horizontal.transferGroup {background: #843c0c;}
+
+
+
+
+.mJsTree ul li > div.userInput, .mJsTree ul li form.userInput, .mJsTree ul li span.vertical.userInput, .mJsTree ul li span.horizontal.userInput {
+    background: #1f4e79;
+}
+.mJsTree ul li > div.userQuestion, .mJsTree ul li form.userQuestion, .mJsTree ul li span.vertical.userQuestion, .mJsTree ul li span.horizontal.userQuestion {
+    background: #27a9e3;
+}
+.mJsTree ul li > div.filterProperty, .mJsTree ul li form.filterProperty, .mJsTree ul li span.vertical.filterProperty, .mJsTree ul li span.horizontal.filterProperty {
+    background: #00a09a;
+}
+.mJsTree ul li > div.filterTypes, .mJsTree ul li form.filterTypes, .mJsTree ul li span.vertical.filterTypes, .mJsTree ul li span.horizontal.filterTypes { 
+    background: #843c0c;
+}
+.mJsTree ul li > div.filterTrue, .mJsTree ul li span.vertical.filterTrue, .mJsTree ul li span.horizontal.filterTrue {
+    background: #1b8829;   
+}
+
+.mJsTree ul li > div.filterFalse, .mJsTree ul li span.vertical.filterFalse, .mJsTree ul li span.horizontal.filterFalse {
+    background: #c35959
+}
+
+.mJsTree ul li > div.initType {
+    background: #b41616;
+}   
+/** END Element type classes **/
+
+/** Select and highlight classes need to be called after styling the base color for the element so it takes 2nd precedent (only blink class is higher) **/
+/* highlight first */
+.highlightClick {
+    border: 2px solid #fff;
+    padding: 5px;
+    cursor:pointer;
+}    
+.mJsTree ul li > div.highlightThis {
+    background: #dcb232;
+}
+.mJsTree ul li > div.elementSelected {background: #6dad47;}
+
+.mJsTree ul li > div i {
+    margin-right: 5px;
+}
+.mJsTree ul li > div .mNotSelectedIcon, .mJsTree ul li > div .mSelectedIcon {
+    display: none;
+}
+.mJsTree ul li > div.elementSelected i.mSelectedIcon {
+    display:inline-block;
+}
+.mJsTree ul li > div.highlightThis i.mNotSelectedIcon {
+    display: inline-block;
+}
+
+/** End selected classes **/
+
+/** Blink classes need to be styled last so they take precedent **/
+.mJsTree ul li > div.green {background: #6dad47}
+.mJsTree ul li > div.bkgColor {background: #eee}
+/** End blink classes **/
+
+
+/** Control Input Field Sizes **/
+
+.mJsTree ul li select.filters_connector_select {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 20px;
+    padding: 0px 2px 0px 2px;
+}
+.mJsTree ul li .mFilterByProperty input, .mJsTree ul li .mFilterByProperty select, .mJsTree ul li .mFilterByProgress input, .mJsTree ul li .mFilterByProgress select {
+    margin: 5px 0px 0px 5px;
+    display: inline-block;
+    min-width: 0px;
+}
+.mJsTree ul li input.pointValueInput {
+    width: 40px;
+    padding: 5px;
+    margin: 5px 0px 0px 5px;
+    display: inline-block;
+    min-width: 0px;
+}
+.mJsTree ul li input.numbersOnly.tiny {
+    width: 40px;
+    padding: 5px;
+    margin: 5px 0px 0px 5px;
+    display: inline-block;
+    min-width: 0px;
+}
+
+.mJsTree ul li input[type=radio].inputForIsPrimary {
+    margin-right: 5px;
+    margin-left: 15px;
+}
+.mJsTree ul li .inputMaxWidth {
+    width: 100%;
+    max-width: 100%;
+}
+
+.mJsTree ul li textarea.textAreaHeight_medium {
+    min-height: 100px;
+}
+
+.mJsTree ul li textarea.reportInput {
+    min-height: 120px;
+    margin-top: 5px;
+}
+    
+/*** END Control input field sizes **/
+
+.mJsTree ul li div.mValidationErrorHighlight {
+    border: 10px #cc0000 solid;
+}
+.mJsTree ul li span.mValidationErrors {
+    background: #cc0000;
+    width:110%;
+    margin-left: -10px;
+    margin: -8px 0px 10px -10px;
+    padding-top: 10px;
+}
+.mJsTree ul li span.mValidationErrors span{
+    margin-bottom: 10px;
+}
+
+.mJsTree ul li span.displayToUser, .mJsTree ul li span.displayToUserIcon, .mJsTree ul li span.pointValue {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.mJsTree ul li span.displayToUserIcon i {
+    margin-right: 8px;
+}
+.mJsTree ul li span.mEnterGroup {
+    margin-bottom: 10px;
+    margin-top: -5px;
+}
+    
+.mJsTree ul li span.filters_connector_text {
+    display: block;
+    margin: 20px 0 15px 0px;
+    font-size: 16px;
+}
+.mJsTree ul li .mFilterByProgress span.filters_connector_text {
+    margin: 30px 0 25px 0px;
+}
+
+.mJsTree ul li a.mDeleteFilterCondition {
+    font-size: 20px;
+    margin-left: 10px;
+    vertical-align: text-bottom;
+}
+.mJsTree ul li a.mAddFilterCondition {
+    margin-left: 5px; 
+    color:#fff; 
+    font-size: 13px; 
+    display:block;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+.mJsTree ul li span.filter_if {
+    display: block;
+    margin-bottom: 0px;
+}
+.mJsTree ul li .mFilterByProgress span.filter_if {
+    margin-bottom: 10px;
+}
+
+.mJsTree ul li span.filter_true, .mJsTree ul li span.filter_false {
+    display: block;
+    margin-top: 25px;
+}
+.mJsTree ul li span.filter_true span, .mJsTree ul li span.filter_false span {
+    margin-left: 15px;
+}
+.mJsTree ul li span.filter_true_options, .mJsTree ul li span.filter_false_options {
+    display: block;
+    /*margin-left: 15px;*/
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.mJsTree ul li span.typeOptionInputLabel {
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.mJsTree ul li > div span.mAlwaysHide {
+    display: none !important;
+}
+
+.mJsTree ul li span.mSelectGroupOption, .mJsTree ul li span.mSelectEntrancesOption, .mJsTree ul li span.mSelectTypesOption  {
+    font-style: normal;
+    margin-top: 0px;
+    margin-left: 15px;
+    width: 100%;
+}
+.mJsTree ul li span.mSelectGroupOption a, .mJsTree ul li span.mSelectEntrancesOption a, .mJsTree ul li span.mSelectTypesOption a  {
+    font-style: normal;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/**** Report Text/Buttons ******/
+.mJsTree ul li span.reportText {
+    text-align: left;
+    padding: 5px;
+    background: #fff;
+    color: #000;
+    border-radius: 10px;
+    width: 95%;
+    margin-top: 10px;
+}
+
+
+
+
+.mJsTree ul li span.filter_dataContainer {
+    margin: 10px 0 0 15px;
+}
+/**
+.mJsTree ul li span.filterProgress_displayGroupOptions, .mJsTree ul li span.filterProgress_displayTypeOptions {
+    margin-left: 30px;
+}
+.mJsTree ul li span.filterProgress_displayGroupOptions i:first-of-type, .mJsTree ul li span.filterProgress_displayTypeOptions i:first-of-type {
+    vertical-align: middle;
+    
+}
+**/
+.mJsTree ul li .form_filterConditionContainer .form_groupContentIcon, .mJsTree ul li .mGroupTransferOptions .form_groupContentIcon {
+    display: inline-block;
+    margin-left: 15px;
+    margin-right: -40px;
+    margin-top: -10px;
+    vertical-align: top;
+}
+.mJsTree ul li .form_filterConditionContainer .form_groupContent, .mJsTree ul li .mGroupTransferOptions .form_groupContent {
+    display: inline-block;
+    margin-left: 50px;
+    width:425px;
+}
+.mJsTree ul li .form_filterConditionContainer .form_groupSelected, .mJsTree ul li .form_filterConditionContainer .form_typeSelected, .mJsTree ul li .mGroupTransferOptions .form_groupSelected, .mJsTree ul li .mGroupTransferOptions .form_typeSelected {
+    color: #fff06c;
+    cursor: pointer;
+}
+.mJsTree ul li .form_filterConditionContainer .form_selectGroupOption, .mJsTree ul li .form_filterConditionContainer .form_selectTypeOption, .mJsTree ul li .mGroupTransferOptions .form_selectGroupOption {
+    margin-bottom: 5px;
+}
+.mJsTree ul li .form_filterConditionContainer .form_selectTypeOption, .mJsTree ul li .mGroupTransferOptions .form_selectTypeOption {
+    margin-top: 3px;
+}
+
+.mJsTree ul li .form_filterConditionContainer .form_typeContentIcon {
+    display: inline-block;
+    margin-left: 70px;
+    margin-right: -85px;
+    margin-top: -5px;
+    vertical-align: top;
+}
+.mJsTree ul li .form_filterConditionContainer .form_typeContent {
+    display: inline-block;
+    margin-left: 90px;
+    width: 375px;
+}
+
+.mJsTree ul li > div span.clearfix:after {
+    visibility: hidden;
+    display: block !important;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.mJsTree ul li > div span.clearfix {
+    display: block;
+}
+
+.mJsTree ul li span.form_selectGroupOption i:first-of-type, .mJsTree ul li span.form_selectTypeOption i:first-of-type {
+    margin-left: 10px;
+}
+
+
+.mJsTree ul li .mGroupTransferOptions .group_transferSelected, .mJsTree ul li .mGroupTransferOptions .group_returnSelected {
+    display: block;
+    margin-left: 15px;
+}
+.mJsTree ul li .mGroupTransferOptions .group_transferSelected, .mJsTree ul li .mGroupTransferOptions .group_selectTransfer  {
+    margin-bottom: 20px;
+    margin-top: 15px;
+}
+.mJsTree ul li .mGroupTransferOptions .group_selectTransfer, .mJsTree ul li .mGroupTransferOptions .group_selectReturn {
+    margin-left: 15px;
+}
+
+/*** USE THIS TO CHANGE HOW THE ENTIRE TREE CONTAINER IS DISPLAYED **/
+
+.mTreeContainer {overflow: hidden; text-align: center; height: 100%; padding-left: 30px;}
+.resize-panel-bottom .mEditContainer .overflow {
+    margin-bottom: 2000px;
+}
+
+
+.mJsTree ul li > div {border-radius: 15px;}
+.mJsTree ul li > div.ui-draggable {cursor: move;}
+.mJsTree ul.topLevelUl {
+    min-height: 1500px;
+}
+
+.mJsTree ul span.separator {
+    border-top: 1px solid #fff;
+    width: 100%;
+    height: 2px;
+    display:block;
+    margin-top: 0px;
+}
+.mJsTree ul span.typeEntrances a {
+    color: #fff;
+}
+.mJsTree ul span.typeEntrances a > i {
+    margin-right: 5px;
+}
+
+
+.mJsTree ul li div.deleteThis {
+    /* background-color: #b41616;*/
+    background-color: #9a9a9a;
+}
+.mJsTree ul li div.errorElem {
+    background-color: #c66262;
+}
+.mJsTree ul li div.errorHighlight {
+    border: 4px solid #b41616;
+}
+.mJsTree ul span.answerDescription {
+    margin-top: 25px;
+}
+
+.mJsTree ul span.typeDescription {
+    width: 100%;
+    line-height: 20px;
+    font-size: 12px;
+}
+.mJsTree ul span.typeName {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.mJsTree ul li span.typeDetailsHeadline {
+    display: block;
+    margin: 5px 0 5px 0;
+}
+.mJsTree ul li span.typeTitle {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.mJsTree ul span.displayFilterCondition {
+    font-size: 13px;
+    line-height: 20px;
+    font-weight: normal;
+}    
+
+.mJsTree ul .formInput {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.mJsTree p.formTitle {
+    text-align: center;
+    font-size: 20px;
+    padding: 0px 0px 0.3em !important;
+    margin-top: 10px;
+}
+.mJsTree p.mFormErrorText {
+    text-align: center;
+}
+.mJsTree p.mFormErrorText span {
+    line-height: 20px;
+    background: #c66262;
+    color: #fff;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 8px;
+    width: 95%;
+}
+
+.mJsTree ul span.inputTitle {
+    font-weight: bold;
+}
+.mJsTree ul span.inputDesc {
+    font-style: italic;
+    margin-top: 5px;
+    line-height: 20px;
+    font-size: 13px;
+}
+.mJsTree ul span.radioLabel {
+    margin-right: 8px;
+}
+.mJsTree button.hideErrors {
+    background-color: #6dad47;
+    color: #fff;
+}
+.mJsTree button.hideErrors:hover {
+    background-color: #fff;
+    color: #6dad47;
+}
+.mJsTree button.hideErrors {
+    background-color: #6dad47;
+    color: #fff;
+}
+.mJsTree button.cancelDelete {
+    background-color: #6dad47;
+    color: #fff;
+}
+.mJsTree button.cancelDelete:hover {
+    background-color: #fff;
+    color: #6dad47;
+}
+.mJsTree button.deleteConfirmed {
+    background-color: #c66262;
+    color: #fff;
+}
+.mJsTree button.deleteConfirmed:hover {
+    background-color: #fff;
+    color: #c66262;
+}
+
+.mTypesInGroupHeader {
+    text-align: left;
+    margin-top: -20px;
+}
+.mTypesInGroupHeader span.separator {
+    border-top: 4px solid #bbb;
+    width: 100%;
+    height: 2px;
+    display:block;
+    margin-top: 20px;
+}
+.mTypesInGroupHeader div.vLine {
+    text-align: center;
+    background-color: #bbb;
+    width: 4px;
+    height: 53px;
+    display:inline-block;
+    margin-top: -2px;
+    margin-bottom: -30px;
+    margin-left: 135px;
+}
+.mTypesInGroupHeader a i {
+    margin-right: 10px;
+}
+.mTypesInGroupHeader a {
+    margin-right: 15px;
+}
+
+/************** ZOOM *********************/
+.mEditTypesControlBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #545454;
+    z-index: 1005;
+    color:#ffffff;
+}
+.mEditTypesControlBar div.mInline {
+    display: inline-block;
+    color: #ffffff;
+    margin-right: 15px;
+}
+.scale90 {
+    transform: translate(-5%, -5%) scale(0.9, 0.9);
+}
+.width90 {
+    width: 110%;
+}
+
+.scale80 {
+    transform: translate(-10%, -10%) scale(0.8, 0.8);
+}
+.width80 {
+    width: 130%;
+}
+
+.scale70 {
+    transform: translate(-15%, -15%) scale(0.7, 0.7);
+}
+.width70 {
+    width: 150%;
+}
+    
+.scale60 {
+    transform: translate(-20%, -20%) scale(0.6, 0.6);
+}
+.width60 {
+    width: 170%;
+}
+
+.scale50 {
+    transform: translate(-25%, -25%) scale(0.5, 0.5);
+}
+.width50 {
+    width: 190%;
+}
+
+.scale40 {
+    transform: translate(-30%, -30%) scale(0.4, 0.4);
+}
+.width40 {
+    width: 210%;
+}
+.scale30 {
+    transform: translate(-35%, -35%) scale(0.3, 0.3);
+}
+.width30 {
+    width: 230%;
+}
+
+.scale20 {
+    transform: translate(-40%, -40%) scale(0.2, 0.2);
+}
+.width20 {
+    width: 250%;
+}
+
+.scale10 {
+    transform: translate(-45%, -45%) scale(0.1, 0.1);
+}
+.width10 {
+    width: 270%;
+}
+
+/*
+.scale60 .mJsTree ul li span, .scale50 .mJsTree ul li span, .scale40 .mJsTree ul li span, .scale30 .mJsTree ul li span, .scale20 .mJsTree ul li span, .scale10 .mJsTree ul li span {
+    font-size: 20px;
+    line-height: 26px;
+}
+*/
+.scaler60 .mJsTree ul li span, .scaler50 .mJsTree ul li span, .scaler40 .mJsTree ul li span, .scaler30 .mJsTree ul li span, .scaler20 .mJsTree ul li span, .scaler10 .mJsTree ul li span {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+
+/* THEME SPECIFIC */
+.mJsTree ul, .mJsTree ol {
+    margin: 0;
+}
+.pagewidth, .full_width .themify_builder_row .row_inner {
+    /*width: 1600px;*/
+    width: 100%;
+}
