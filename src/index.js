@@ -5,7 +5,9 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router-dom';
 import App from './containers/App';
 import store, { history } from './store';
-import { SystemManager } from './lib/systemManager/index';
+import rxjsConfig from 'recompose/rxjsObservableConfig';
+import setObservableConfig from 'recompose/setObservableConfig';
+setObservableConfig(rxjsConfig);
 
 import WebFontLoader from 'webfontloader';
 
@@ -21,9 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Route render={(props) =>
-        <SystemManager {...props}>
-          <App {...props} />
-        </SystemManager>
+        <App {...props} />
       } />
     </ConnectedRouter>
   </Provider>,

@@ -1,4 +1,4 @@
-import { nav } from './nav';
-import { renderLoadData, renderDataLoaded } from './render';
+import render from './render';
+import user from './user';
 
-export default [nav, renderLoadData, renderDataLoaded];
+export default [...render, ...user];

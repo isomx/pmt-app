@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import Navigation from './NavReducer';
-import RenderReducer from './RenderReducer';
+import render from './render';
+import app from './app';
+import user from './user';
 
 export default combineReducers({
   router: routerReducer,
-  nav: Navigation,
-  render: RenderReducer,
+  render,
+  ui: combineReducers({
+    app,
+  }),
+  user,
 });

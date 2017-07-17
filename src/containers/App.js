@@ -1,20 +1,30 @@
 /* eslint-disable */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { MdTransitionGroup, MdTransitionHandler, transitionTypes } from '../lib/systemManager';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import { loadData } from '../actions/render';
-import WebsitesPage from './WebsitesPage';
-import Dashboard from './Dashboard';
-import Funnels from './Funnels';
-import Tree from './Tree';
-import Login from './Login';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
-import NavDrawerMain from '../components/NavDrawerMain';
 import Toolbar  from 'react-md/lib/Toolbars';
-import Button from 'react-md/lib/Buttons';
 import cn from 'classnames';
+import Button from 'react-md/lib/Buttons';
+import TextField from 'react-md/lib/TextFields';
+import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import MdTextField from '../components/MdTextField';
+import DnDCell from '../components/DnDCell';
+import DnDGrid from '../components/DnDGrid';
+import { render as renderActions } from '../constants/ActionTypes';
+import Login from './Login'
+import isEmpty from 'lodash/isEmpty';
+import { matchPath } from 'react-router-dom';
+
+
+import Card from 'react-md/lib/Cards/Card';
+import CardTitle from 'react-md/lib/Cards/CardTitle';
+import CardActions from 'react-md/lib/Cards/CardActions';
+import CardText from 'react-md/lib/Cards/CardText';
+import Media, { MediaOverlay } from 'react-md/lib/Media';
+
 
 import componentFromStream from 'recompose/componentFromStream';
 import mapPropsStream from 'recompose/mapPropsStream';
@@ -23,224 +33,202 @@ import compose from 'recompose/compose';
 import getContext from 'recompose/getContext';
 import { Observable } from 'rxjs/Observable';
 
-import rxjsConfig from 'recompose/rxjsObservableConfig';
-import setObservableConfig from 'recompose/setObservableConfig';
-setObservableConfig(rxjsConfig);
-
-const Render = props => {
-  console.log('render props = ', props);
-
+const render = props => {
 
 }
-const App2 = config => {
-  console.log('config = ', config);
-  const render = props => {
-    //console.log('render props = ', props);
-    console.log('APP2 RENDERING');
-    return (<WebsitesPage />);
-    return (
-      <h1>int = {props.int}, int2 = {props.int2}</h1>
-    )
-  };
-  const parentProps$ = props$ => {
-    const int$ = Observable.interval(1000).startWith(1)
-      .map(v => {
-        //console.log('v = ', v);
-        return v;
-      }).take(3);
-    return props$.distinctUntilChanged().combineLatest(int$, ({...props}, int) => {
-      //console.log('parentProps = ', props);
 
-      return {...props, int};
-    })
-  };
-  const mapPropsStream$ = [parentProps$];
-  const mapProps$ = props$ => {
-    const routes$ = props$.filter(p => {
-      //console.log('p = ', p);
-      return p;
-    }).startWith(config);
-    const int2$ = Observable.interval(1500)
-      .map(v => {
-        //console.log('v = ', v);
-        return v;
-      }).take(2);
-    return props$.distinctUntilChanged().combineLatest(int2$, ({...props}, int2) => {
-      //console.log('props = ', props);
-      //console.log('state = ', state);
-      //return render(props);
-      //return <Toolbar />
-      return ({...props, int2});
-    })
-  };
-  if (!config.props) return render(config);
-  const enhance = getContext({mdTransitionParentId: PropTypes.string});
-  //const Component = mapPropsStream(mapProps$)(Toolbar);
-  //const Component = enhance(componentFromStream(mapProps$));
-  const Component = mapPropsStream(compose(...mapPropsStream$, mapProps$))(render);
-  //const Component = compose(mapPropsStream(mapProps$), enhance)(render);
-  return (<Component />);
-  if (config.data) {
+const imgSrc = 'http://freedomlifestylenetwork.com/app/img/screenshots/s_74_0.jpg';
 
-  }
-};
-
-const App = config => {
-  console.log('config = ', config);
-  const AppRender = App2(config);
-  const render = props => {
-    // console.log('render props = ', props);
-    console.log('APP1 RENDERING');
-    //const AppRender = App2(config);
-    //return <div>{AppRender}</div>
-    //return <Toolbar children={AppRender}/>
-    //return <App2 {...config}/>
-    return (
-      <div>
-        <h1>int = {props.int}, int2 = {props.int2}</h1>
-        {AppRender}
-      </div>
-    )
-  };
-  const parentProps$ = props$ => {
-    const int$ = Observable.interval(3000).startWith(1)
-      .map(v => {
-        //console.log('v = ', v);
-        return v;
-      }).take(3);
-    return props$.combineLatest(int$, ({...props}, int) => {
-      //console.log('parentProps = ', props);
-
-      return {...props, int};
-    })
-  };
-  const mapPropsStream$ = [parentProps$];
-  const mapProps$ = props$ => {
-    const routes$ = props$.filter(p => {
-      //console.log('p = ', p);
-      return p;
-    }).startWith(config);
-    const int2$ = Observable.interval(2500)
-      .map(v => {
-        //console.log('v = ', v);
-        return v;
-      }).take(5);
-    return props$.distinctUntilChanged().combineLatest(int2$, ({...props}, int2) => {
-      //console.log('props = ', props);
-      //console.log('state = ', state);
-      //return render(props);
-      //return <Toolbar />
-      return ({...props, int2});
-    })
-  };
-  //if (!config.props) return render(config);
-  const enhance = getContext({mdTransitionParentId: PropTypes.string});
-  //const Component = mapPropsStream(mapProps$)(Toolbar);
-  //const Component = enhance(componentFromStream(mapProps$));
-  const Component = mapPropsStream(compose(...mapPropsStream$, mapProps$))(render);
-  //const Component = compose(mapPropsStream(mapProps$), enhance)(render);
-  return (<Component />);
-  if (config.data) {
-
-  }
-}
-
-
-class AppClass extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      drawerOpen: false,
-    }
-  }
-  render() {
-    const location = this.props.location;
-    const transitionKey = location.pathname.split('/')[1];
-    // console.log('this.props.render = ', this.props.render);
+      render: null,
+    };
+    // if (isEmpty(this.props.dataFlat)) this.props.loadData('/');
+    const do1 = (v = 0) => {console.log('do1 called'); return v + 1};
+    const do2 = (v) => {console.log('do2 called'); return v + 2};
+    const do3 = (v) => {console.log('do3 called'); return v + 3};
+    const result = compose(do3, do2, do1)(1);
+    console.log('result = ', result);
     /**
-    if (!this.props.render) {
-      this.props.loadData(this.props.location.pathname);
-      // console.log('this.props.render = ', this.props.render);
-      return null;
-    }
+    const funcs = [do1, do2, do3];
+    const stream$ = Observable.from(funcs)
+      .map(func => func())
+      .scan((acc, curr) => {
+        console.log('acc = ', acc);
+        acc.push(curr);
+        return acc;
+      }, [])
+    ;
+    const subscribe = stream$.subscribe(
+      v => console.log('subscribe value = ', v),
+      err => console.log('subscribe err = ', err),
+      () => console.log('subscribe complete')
+    );
      **/
+
+  }
+
+  buildComponents(data) {
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps = ', nextProps);
+    this.setState({render: nextProps.dataFlat});
+  }
+
+  render() {
+    const setupProps = {
+      label: 'My Form Label',
+      id: 'MyFieldId',
+      name: 'myField',
+    };
+    //return MdTextField(setupProps);
+    const Comp = MdTextField();
     /**
      *
-     * header={<MdToolbar
-          fixed={true}
-          colored={true}
-          title={'Predictive Marketing'}
-          nav={<Button key="nav" icon>{this.props.navIcon}</Button>}
-          className={cn('md-divider-border md-divider-border--bottom')}
-        />}
-     <Drawer
-     visible={true}
-     position="left"
-     navItems={navItemsResp.navItems}
-     type={Drawer.DrawerTypes.TEMPORARY}
-     //header={<div style={{height: '128px', backgroundColor: 'rgb(33, 150, 243)'}}>My Header Content </div>}
-     //header={<div style={{height: '64px', backgroundColor: '#eeeeee'}}>My Header Content </div>}
-     className="md-toolbar-relative"
-     style={{zIndex: 100}}
-     clickableDesktopOverlay
-     />
-
-
-
-     <MdTransitionGroup name='root' transitionType={transitionTypes.SURFACE_EXPAND}>
-     <MdTransitionHandler key={transitionKey} name={transitionKey}>
-     <Route key={location.key + 'dashboard'} path="/dashboard" render={ props => <DashboardPage {...props} />} />
-     <Route key={location.key + 'websites'} path="/websites" render={ props => <WebsitesPage {...props} /> } />
-     <Route key={location.key + 'funnels'} path="/funnels" render={ props => <FunnelsPage {...props} /> } />
-     <Route key={location.key + 'tree'} path="/tree" render={ props => <TreeContainer {...props} treeId="groupTree2" /> } />
-     </MdTransitionHandler>
-     </MdTransitionGroup>
-
-     <NavDrawerMain/>
-
-     <CSSTransitionGroup transitionName="md-cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+     * <div className="md-cell md-cell--6-tablet md-cell--4">
+     <Comp {...setupProps} />
+     </div>
      */
-    /**
     return (
-      <CSSTransitionGroup transitionName="md-cross-fade" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-        <Switch name='mainRoutes' key={transitionKey}>
-          <Route path="/dashboard" render={ props => <Dashboard {...props} />} />
-          <Route path="/websites" render={ props => <WebsitesPage {...props} /> } />
-          <Route path="/funnels" render={ props => <Funnels {...props} /> } />
-          <Route path="/tree" render={ props => <TreeContainer {...props} treeId="groupTree2" /> } />
-        </Switch>
-      </CSSTransitionGroup>
-    );
-     **/
+      <div>
+        <div className="md-grid md-grid--40-24">
+          <div className="md-cell md-cell--6 md-cell--order-3 md-cell--4-offset md-cell--2-tablet-offset">
+            <Card className="md-block-centered" raise={true}>
+              <Media>
+                <img src={imgSrc} role="presentation"/>
+              </Media>
+              <CardTitle
+                title="Card Title"
+                subtitle="Card Subtitle"
+              />
+              <CardActions expander>
+                <Button primary raised label="Funnels Page"/>
+                <Button flat label="Action 2"/>
+              </CardActions>
+            </Card>
+          </div>
+          <div className="md-cell md-cell--4 md-cell--order-2">
+            <Card className="md-block-centered" raise={true}>
+              <Media>
+                <img src={imgSrc} role="presentation"/>
+              </Media>
+              <CardTitle
+                title="Card Title"
+                subtitle="Card Subtitle"
+              />
+              <CardActions expander>
+                <Button flat label="Funnels Page"/>
+                <Button flat label="Action 2"/>
+              </CardActions>
+            </Card>
+          </div>
+          <div className="md-cell md-cell--6 md-cell--order-1">
+            <Card className="md-block-centered" raise={true}>
+              <Media>
+                <img src={imgSrc} role="presentation"/>
+              </Media>
+              <CardTitle
+                title="Card Title"
+                subtitle="Card Subtitle"
+              />
+              <CardActions expander>
+                <Button primary flat label="Funnels Page"/>
+                <Button flat label="Action 2"/>
+              </CardActions>
+            </Card>
+          </div>
+
+
+        </div>
+
+        <div className="md-grid md-grid--40-24">
+          <div className="md-cell md-cell--12 md-cell-block-centered">
+            <div className="md-cell--4 md-cell--8-tablet">
+            <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate natus pariatur sapiente? Delectus dignissimos ea enim facere harum, nulla odit reiciendis sequi temporibus veniam? Fugit perferendis perspiciatis placeat tenetur.</span><span>Doloremque enim esse ex magni nihil nobis perferendis sapiente vel. Ad atque beatae, delectus eligendi enim, eum in labore libero minima, nesciunt non quisquam reiciendis veritatis! Architecto maiores praesentium ullam.</span><span>A animi assumenda autem cumque dicta distinctio eos excepturi hic impedit inventore iusto labore, magni molestiae perferendis placeat possimus quasi quos ratione repellendus temporibus tenetur voluptatem, voluptates. Autem, cum ipsum!</span><span>Amet commodi cupiditate delectus iste maiores minus nisi non perspiciatis provident sunt? Dolor ex, inventore nihil pariatur quasi quod tenetur! Ad at ipsa labore libero odio quaerat, rem similique! Sit!</span><span>Ab alias, officiis! Accusamus, aliquam aliquid amet animi aperiam cum doloremque error eveniet explicabo id ipsam laboriosam libero, magnam maxime nostrum perferendis quibusdam rem, reprehenderit sunt totam ullam veritatis voluptates?</span><span>Adipisci aspernatur debitis doloremque earum eius, fugit incidunt minima, perferendis quam quas repudiandae soluta voluptate, voluptatibus? Facere inventore pariatur veritatis vero voluptatum! Culpa debitis ex iure laboriosam minus nostrum pariatur!</span><span>Accusantium ad aperiam atque, consequatur eligendi fuga fugiat, fugit id maiores neque nobis officia pariatur ratione reprehenderit veniam vero voluptatum! Aut, deserunt dolores doloribus expedita fuga magnam minus perspiciatis quas.</span><span>Architecto consectetur culpa deleniti exercitationem, fugit illo nesciunt nisi quaerat quo soluta. At blanditiis ducimus est eum mollitia nostrum quia quibusdam totam? Aperiam ipsum nam nemo qui? Nostrum, praesentium, veritatis.</span><span>Ab aspernatur beatae cumque, deserunt dignissimos laboriosam modi molestias ratione rem veniam! Consectetur distinctio dolores, eaque facere illo obcaecati saepe soluta vero! Consequatur corporis deleniti illum, itaque maiores sed veniam?</span><span>Asperiores distinctio dolorem modi officia praesentium sapiente tempora voluptates. Dicta eum impedit incidunt, iusto laudantium odit! Culpa cumque dolorem doloremque, eum expedita facere facilis, ipsam, iusto nesciunt optio quas sed!</span></p>
+              <div className="md-cell--4">
+                <p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate natus pariatur sapiente? Delectus dignissimos ea enim facere harum, nulla odit reiciendis sequi temporibus veniam? Fugit perferendis perspiciatis placeat tenetur.</span><span>Doloremque enim esse ex magni nihil nobis perferendis sapiente vel. Ad atque beatae, delectus eligendi enim, eum in labore libero minima, nesciunt non quisquam reiciendis veritatis! Architecto maiores praesentium ullam.</span><span>A animi assumenda autem cumque dicta distinctio eos excepturi hic impedit inventore iusto labore, magni molestiae perferendis placeat possimus quasi quos ratione repellendus temporibus tenetur voluptatem, voluptates. Autem, cum ipsum!</span><span>Amet commodi cupiditate delectus iste maiores minus nisi non perspiciatis provident sunt? Dolor ex, inventore nihil pariatur quasi quod tenetur! Ad at ipsa labore libero odio quaerat, rem similique! Sit!</span><span>Ab alias, officiis! Accusamus, aliquam aliquid amet animi aperiam cum doloremque error eveniet explicabo id ipsam laboriosam libero, magnam maxime nostrum perferendis quibusdam rem, reprehenderit sunt totam ullam veritatis voluptates?</span><span>Adipisci aspernatur debitis doloremque earum eius, fugit incidunt minima, perferendis quam quas repudiandae soluta voluptate, voluptatibus? Facere inventore pariatur veritatis vero voluptatum! Culpa debitis ex iure laboriosam minus nostrum pariatur!</span><span>Accusantium ad aperiam atque, consequatur eligendi fuga fugiat, fugit id maiores neque nobis officia pariatur ratione reprehenderit veniam vero voluptatum! Aut, deserunt dolores doloribus expedita fuga magnam minus perspiciatis quas.</span><span>Architecto consectetur culpa deleniti exercitationem, fugit illo nesciunt nisi quaerat quo soluta. At blanditiis ducimus est eum mollitia nostrum quia quibusdam totam? Aperiam ipsum nam nemo qui? Nostrum, praesentium, veritatis.</span><span>Ab aspernatur beatae cumque, deserunt dignissimos laboriosam modi molestias ratione rem veniam! Consectetur distinctio dolores, eaque facere illo obcaecati saepe soluta vero! Consequatur corporis deleniti illum, itaque maiores sed veniam?</span><span>Asperiores distinctio dolorem modi officia praesentium sapiente tempora voluptates. Dicta eum impedit incidunt, iusto laudantium odit! Culpa cumque dolorem doloremque, eum expedita facere facilis, ipsam, iusto nesciunt optio quas sed!</span></p>
+              </div>
+            </div>
+
+          </div>
+          <div className="md-cell md-cell--8"><p><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam cupiditate natus pariatur sapiente? Delectus dignissimos ea enim facere harum, nulla odit reiciendis sequi temporibus veniam? Fugit perferendis perspiciatis placeat tenetur.</span><span>Doloremque enim esse ex magni nihil nobis perferendis sapiente vel. Ad atque beatae, delectus eligendi enim, eum in labore libero minima, nesciunt non quisquam reiciendis veritatis! Architecto maiores praesentium ullam.</span><span>A animi assumenda autem cumque dicta distinctio eos excepturi hic impedit inventore iusto labore, magni molestiae perferendis placeat possimus quasi quos ratione repellendus temporibus tenetur voluptatem, voluptates. Autem, cum ipsum!</span><span>Amet commodi cupiditate delectus iste maiores minus nisi non perspiciatis provident sunt? Dolor ex, inventore nihil pariatur quasi quod tenetur! Ad at ipsa labore libero odio quaerat, rem similique! Sit!</span><span>Ab alias, officiis! Accusamus, aliquam aliquid amet animi aperiam cum doloremque error eveniet explicabo id ipsam laboriosam libero, magnam maxime nostrum perferendis quibusdam rem, reprehenderit sunt totam ullam veritatis voluptates?</span><span>Adipisci aspernatur debitis doloremque earum eius, fugit incidunt minima, perferendis quam quas repudiandae soluta voluptate, voluptatibus? Facere inventore pariatur veritatis vero voluptatum! Culpa debitis ex iure laboriosam minus nostrum pariatur!</span><span>Accusantium ad aperiam atque, consequatur eligendi fuga fugiat, fugit id maiores neque nobis officia pariatur ratione reprehenderit veniam vero voluptatum! Aut, deserunt dolores doloribus expedita fuga magnam minus perspiciatis quas.</span><span>Architecto consectetur culpa deleniti exercitationem, fugit illo nesciunt nisi quaerat quo soluta. At blanditiis ducimus est eum mollitia nostrum quia quibusdam totam? Aperiam ipsum nam nemo qui? Nostrum, praesentium, veritatis.</span><span>Ab aspernatur beatae cumque, deserunt dignissimos laboriosam modi molestias ratione rem veniam! Consectetur distinctio dolores, eaque facere illo obcaecati saepe soluta vero! Consequatur corporis deleniti illum, itaque maiores sed veniam?</span><span>Asperiores distinctio dolorem modi officia praesentium sapiente tempora voluptates. Dicta eum impedit incidunt, iusto laudantium odit! Culpa cumque dolorem doloremque, eum expedita facere facilis, ipsam, iusto nesciunt optio quas sed!</span></p></div>
+
+        </div>
+      </div>
+    )
+
     return (
-      <MdTransitionGroup name="mainRoutes" transitionType={transitionTypes.CROSS_FADE}>
-          <Switch name='mainRoutes' key={transitionKey}>
-            <Route path="/dashboard" render={ props => <Dashboard {...props} />} />
-            <Route path="/websites" render={ props => <WebsitesPage {...props} /> } />
-            <Route path="/funnels" render={ props => <Funnels {...props} /> } />
-            <Route path="/tree" render={ props => <Tree {...props} /> } />
-            <Route path="/login" render={ props => <Login {...props} /> } />
-          </Switch>
-      </MdTransitionGroup>
+      <Comp {...setupProps} />
     );
+    console.log('this.props = ', this.props);
+
+    const match = matchPath('/hello?something=yes', {
+      path: '/hello',
+      exact: false,
+    });
+    console.log('match = ', match);
+    if (this.props.processing) {
+      return (
+        <div>
+          <Login />
+          <CircularProgress id="appLoading" scale={5} />
+        </div>
+      );
+    }
+
+    if (this.state.render) {
+      return (
+        <div>
+          <Login/>
+          <h1>got the data!</h1>
+        </div>
+      );
+    }
+
+    if (this.props.errors) {
+      return (
+        <div>
+          <Login />
+          <h1>Error...</h1>
+        </div>
+      );
+    }
   }
+
+
 }
 
-
-function mapStateToProps(store, ownProps) {
-  // console.log('location = ', ownProps.location);
-  return {
-    locationState: ownProps.location.state ? ownProps.location.state.mdTransition : null,
-    location: ownProps.location,
-    render: store.render[ownProps.location.pathname],
-  };
+//@DragDropContext(HTML5Backend)
+const App2 = props => {
+  //console.log('props = ', props);
+  //const Component = MdTextField({label: "First Name", id: "fname", name: 'fname'})
+  const Component = MdTextField()
+  return (
+    <div>
+      <DnDGrid>
+        <DnDCell>
+          <Component label="First Name" id="fname" name="fname" />
+        </DnDCell>
+        <DnDCell>
+          <p>My Second Component</p>
+        </DnDCell>
+        <DnDCell>
+          <p>My Third Component</p>
+        </DnDCell>
+      </DnDGrid>
+    </div>
+  );
 }
 
-function mapDispatchToProps(dispatch, state) {
-  return {
-    dispatch,
-    loadData: loadData(dispatch),
-  };
-}
+const mapStateToProps = (store, ownProps) => ({...store.render});
+const mapDispatchToProps = (dispatch, state) => ({
+  loadData: () => dispatch({type: renderActions.LOAD_DATA}),
+});
 
+//export default DragDropContext(HTML5Backend)(connect(mapStateToProps, mapDispatchToProps)(App));
 export default connect(mapStateToProps, mapDispatchToProps)(App);
+//export default connect(mapStateToProps, mapDispatchToProps)(App);

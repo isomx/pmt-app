@@ -2,6 +2,16 @@
 $md-cross-fade-distance: 16px;
 $md-transition-acceleration: cubic-bezier(.4, 0, 1, 1);
 $md-transition-deceleration: cubic-bezier(0, 0, .2, 1);
+// $md-mobile-media: 'screen and (min-width: 800px)' !default;
+/*
+$md-grid-phone-breakpoint: 500px;
+$md-grid-desktop-breakpoint: 1500px;
+$md-grid-desktop-columns: 4;
+$md-grid-tablet-breakpoint: 1000px;
+$md-grid-tablet-columns: 8;
+$md-grid-phone-columns: 4;
+$md-media-included: false;
+*/
 @include react-md-everything;
-@include react-md-make-custom-grid('40-16', 40px, 8px);
-@include react-md-make-custom-grid('40-24', 24px, 24px);
+@include react-md-make-custom-grid('8-16', 8px, 16px);
+@include react-md-make-custom-grid('40-24', 40px, 24px);

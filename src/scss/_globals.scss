@@ -1,8 +1,21 @@
-@import '../../node_modules/react-md/src/scss/_react-md';
 
+//@import '../../node_modules/react-md/src/scss/_react-md';
+@import '~react-md/src/scss/react-md';
 // Variable overrides
 // $md-primary-color: $md-light-blue-900;
+
+/*
+$md-mobile-min-width: 950px;
+$md-tablet-min-width: 420px;
+$md-desktop-min-width: 400px;
+$md-mobile-media: 'screen and (min-width: #{$md-mobile-min-width})';
+$md-mobile-portrait-media: 'screen and (min-width: #{$md-mobile-min-width}) and (orientation: portrait)';
+$md-mobile-landscape-media: 'screen and (min-width: #{$md-mobile-min-width}) and (orientation: landscape)';
+$md-tablet-media: 'screen and (min-width: #{$md-tablet-min-width})';
+$md-tablet-portrait-media: 'screen and (min-width: #{$md-tablet-min-width}) and (orientation: protrait)';
+$md-tablet-landscape-media: 'screen and (min-width: #{$md-tablet-min-width}) and (orientation: landscape)';
+$md-desktop-media: 'screen and (min-width: #{$md-desktop-min-width})';
+*/
 $md-primary-color: $md-blue-500;
 $md-secondary-color: $md-orange-a-400;
-
 

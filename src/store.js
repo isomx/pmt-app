@@ -3,7 +3,7 @@ import { createLogicMiddleware } from 'redux-logic';
 import logicMiddleware from './middleware';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { routerMiddleware } from 'react-router-redux';
-import reducers from './reducers/Index';
+import reducers from './reducers';
 // import {createLogger} from 'redux-logger';
 
 /**

@@ -1,4 +1,4 @@
-import { renderActions } from './actionTypes';
+import { renderActions } from '../constants/ActionTypes';
 
 export const loadData = (dispatch) => {
   return (pathname) => {
